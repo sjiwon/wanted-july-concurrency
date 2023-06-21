@@ -26,4 +26,11 @@ public class TicketHelper {
                 Thread.currentThread().getName()
         );
     }
+
+    public static void loggingRedisDistributedLockByRedissonClient() {
+        log.info(
+                "--> Thread [{}] Redis Distributed Lock (Redisson Client) 획득 시도",
+                Thread.currentThread().getName()
+        );
+    }
 }
