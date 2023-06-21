@@ -19,4 +19,11 @@ public class TicketHelper {
                 Thread.currentThread().getName()
         );
     }
+
+    public static void loggingRedisDistributedLockByLettuceClient() {
+        log.info(
+                "--> Thread [{}] Redis Distributed Lock (Lettuce Client) 획득 재시도",
+                Thread.currentThread().getName()
+        );
+    }
 }
