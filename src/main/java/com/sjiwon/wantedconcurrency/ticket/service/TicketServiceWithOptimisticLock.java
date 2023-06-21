@@ -5,23 +5,22 @@ import com.sjiwon.wantedconcurrency.ticket.domain.TicketRepository;
 import com.sjiwon.wantedconcurrency.ticket.utils.TicketHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class TicketServiceWithSynchronized {
+public class TicketServiceWithOptimisticLock {
     private final TicketRepository ticketRepository;
 
-    public synchronized void buy(String ticketName) {
+    @Transactional
+    public void buy(String ticketName) {
         // 1. get Ticket
-        Ticket ticket = ticketRepository.findByName(ticketName);
+        Ticket ticket = ticketRepository.findByNameWithOptimisticLock(ticketName);
 
         // 2. buy
         ticket.buyTicket();
 
-        // 3. apply
-        ticketRepository.saveAndFlush(ticket);
-
-        // 4. logging remain tickets
+        // 3. logging remain tickets
         TicketHelper.loggingTicketBuyProcess(ticket);
     }
 }

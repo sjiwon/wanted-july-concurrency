@@ -12,4 +12,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT t FROM Ticket t WHERE t.name = :ticketName")
     Ticket findByNameWithPessimisticLock(@Param("ticketName") String ticketName);
+
+    @Lock(LockModeType.OPTIMISTIC)
+    @Query("SELECT t FROM Ticket t WHERE t.name = :ticketName")
+    Ticket findByNameWithOptimisticLock(@Param("ticketName") String ticketName);
 }

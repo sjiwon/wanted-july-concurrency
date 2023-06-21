@@ -21,6 +21,6 @@ public class TicketServiceWithPessimisticLock {
         ticket.buyTicket();
 
         // 3. logging remain tickets
-        TicketHelper.logging(ticket);
+        TicketHelper.loggingTicketBuyProcess(ticket);
     }
 }

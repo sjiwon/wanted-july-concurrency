@@ -20,6 +20,9 @@ public class Ticket {
 
     private int amount;
 
+    @Version
+    private Long version;
+
     public Ticket(String name, int amount) {
         this.name = name;
         this.amount = amount;
